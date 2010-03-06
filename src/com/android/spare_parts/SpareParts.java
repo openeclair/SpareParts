@@ -209,6 +209,10 @@ public class SpareParts extends PreferenceActivity
             int val = Integer.parseInt(objValue.toString());
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.MEMCTL_STATE, val);
+            
+            // Disable MemCtl Size Preference is State is disabled/swap-only
+            if ((val == 0) || (val == 3))
+            	    mMemctlSizePref.setEnabled(false);
         } catch (NumberFormatException e) {
         }
     }
@@ -263,8 +267,12 @@ public class SpareParts extends PreferenceActivity
 
     public void readMemctlStatePreference(ListPreference pref) {
         try {
-            pref.setValueIndex(Settings.Secure.getInt(getContentResolver(),
-                    Settings.Secure.MEMCTL_STATE));
+        	int val = Settings.Secure.getInt(getContentResolver(), Settings.Secure.MEMCTL_STATE);
+            pref.setValueIndex(val);
+            
+            // Disable MemCtl Size Preference is State is disabled/swap-only
+            if ((val == 0) || (val == 3))
+        	    mMemctlSizePref.setEnabled(false);
         } catch (SettingNotFoundException e) {
         }
     }
