@@ -211,7 +211,7 @@ public class SpareParts extends PreferenceActivity
                     Settings.Secure.MEMCTL_STATE, val);
             
             // Disable MemCtl Size Preference is State is disabled/swap-only
-            if ((val == 0) || (val == 3))
+            if ((val == 0) || (val == 2))
             	    mMemctlSizePref.setEnabled(false);
         } catch (NumberFormatException e) {
         }
@@ -271,7 +271,7 @@ public class SpareParts extends PreferenceActivity
             pref.setValueIndex(val);
             
             // Disable MemCtl Size Preference is State is disabled/swap-only
-            if ((val == 0) || (val == 3))
+            if ((val == 0) || (val == 2))
         	    mMemctlSizePref.setEnabled(false);
         } catch (SettingNotFoundException e) {
         }
