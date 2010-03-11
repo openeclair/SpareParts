@@ -73,4 +73,18 @@
         <item>32768</item>
     </string-array>
 
+    <string-array name="entries_memctl_swappiness">
+        <item>40</item>
+        <item>60</item>
+        <item>80</item>
+        <item>100</item>
+    </string-array>
+
+    <string-array name="entryvalues_memctl_swappiness">
+        <item>40</item>
+        <item>60</item>
+        <item>80</item>
+        <item>100</item>
+    </string-array>
+
 </resources>

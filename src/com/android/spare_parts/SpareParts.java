@@ -61,6 +61,7 @@ public class SpareParts extends PreferenceActivity
     private static final String LAUNCHER_ORIENTATION_PREF = "launcher_orientation";
     private static final String MEMCTL_STATE_PREF = "memctl_state";
     private static final String MEMCTL_SIZE_PREF = "memctl_size";
+    private static final String MEMCTL_SWAPPINESS_PREF = "memctl_swappiness";
     
     private final Configuration mCurConfig = new Configuration();
     
@@ -74,6 +75,8 @@ public class SpareParts extends PreferenceActivity
     private CheckBoxPreference mLauncherOrientationPref;
     private ListPreference mMemctlStatePref;
     private ListPreference mMemctlSizePref;
+    private ListPreference mMemctlSwappinessPref;
+    
     
     private IWindowManager mWindowManager;
 
@@ -134,7 +137,10 @@ public class SpareParts extends PreferenceActivity
         mMemctlStatePref.setOnPreferenceChangeListener(this);
         mMemctlSizePref = (ListPreference) prefSet.findPreference(MEMCTL_SIZE_PREF);
         mMemctlSizePref.setOnPreferenceChangeListener(this);
+        mMemctlSwappinessPref = (ListPreference) prefSet.findPreference(MEMCTL_SWAPPINESS_PREF);
+        mMemctlSwappinessPref.setOnPreferenceChangeListener(this);
 
+        
         mCompatibilityMode = (CheckBoxPreference) findPreference(KEY_COMPATIBILITY_MODE);
         mCompatibilityMode.setPersistent(false);
         mCompatibilityMode.setChecked(Settings.System.getInt(getContentResolver(),
@@ -179,6 +185,8 @@ public class SpareParts extends PreferenceActivity
             writeMemctlSizePreference(objValue);
         } else if (preference == mMemctlStatePref) {
             writeMemctlStatePreference(objValue);
+        } else if (preference == mMemctlSwappinessPref) {
+            writeMemctlSwappinessPreference(objValue);
         }
         // always let the preference setting proceed.
         return true;
@@ -210,9 +218,14 @@ public class SpareParts extends PreferenceActivity
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.MEMCTL_STATE, val);
             
-            // Disable MemCtl Size Preference is State is disabled/swap-only
+        	// Disable MemCtl Swappiness Preference if State is disabled
+            if (val ==0)
+            	mMemctlSwappinessPref.setEnabled(false);
+            else
+            	mMemctlSwappinessPref.setEnabled(true);
+            // Disable MemCtl Size Preference if State is disabled/swap-only
             if ((val == 0) || (val == 2))
-            	    mMemctlSizePref.setEnabled(false);
+            	mMemctlSizePref.setEnabled(false);
             else
             	mMemctlSizePref.setEnabled(true);
         } catch (NumberFormatException e) {
@@ -224,6 +237,14 @@ public class SpareParts extends PreferenceActivity
             int val = Integer.parseInt(objValue.toString());
             Settings.Secure.putInt(getContentResolver(), 
                     Settings.Secure.MEMCTL_SIZE, val);
+        } catch (NumberFormatException e) {
+        }
+    }
+    public void writeMemctlSwappinessPreference(Object objValue) {
+        try {
+            int val = Integer.parseInt(objValue.toString());
+            Settings.Secure.putInt(getContentResolver(), 
+                    Settings.Secure.MEMCTL_SWAPPINESS, val);
         } catch (NumberFormatException e) {
         }
     }
@@ -272,11 +293,16 @@ public class SpareParts extends PreferenceActivity
         	int val = Settings.Secure.getInt(getContentResolver(), Settings.Secure.MEMCTL_STATE);
             pref.setValueIndex(val);
             
-            // Disable MemCtl Size Preference is State is disabled/swap-only
-            if ((val == 0) || (val == 2))
-        	    mMemctlSizePref.setEnabled(false);
+        	// Disable MemCtl Swappiness Preference if State is disabled
+            if (val ==0)
+            	mMemctlSwappinessPref.setEnabled(false);
             else
-            	mMemctlSizePref.setEnabled(true);
+            	mMemctlSwappinessPref.setEnabled(true);
+            // Disable MemCtl Size Preference if State is disabled/swap-only
+            if ((val == 0) || (val == 2))
+            	mMemctlSizePref.setEnabled(false);
+            else
+            	mMemctlSizePref.setEnabled(true);            	
         } catch (SettingNotFoundException e) {
         }
     }
@@ -285,6 +311,13 @@ public class SpareParts extends PreferenceActivity
         try {
             pref.setValueIndex(Settings.Secure.getInt(getContentResolver(),
                     Settings.Secure.MEMCTL_SIZE));
+        } catch (SettingNotFoundException e) {
+        } 
+    }
+    public void readMemctlSwappinessPreference(ListPreference pref) {
+        try {
+            pref.setValueIndex(Settings.Secure.getInt(getContentResolver(),
+                    Settings.Secure.MEMCTL_SWAPPINESS));
         } catch (SettingNotFoundException e) {
         } 
     }
@@ -315,7 +348,8 @@ public class SpareParts extends PreferenceActivity
         readAnimationPreference(1, mTransitionAnimationsPref);
         readEndButtonPreference(mEndButtonPref);
         readMemctlStatePreference(mMemctlStatePref);
-        //readMemctlSizePreference(mMemctlSizePref);
+        readMemctlSizePreference(mMemctlSizePref);
+        readMemctlSwappinessPreference(mMemctlSwappinessPref);
         updateToggles();
     }
 }

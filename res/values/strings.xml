@@ -74,6 +74,8 @@
     <string name="title_memctl_size">Compcache Size</string>
     <string name="summary_memctl_size">Change Compcache Size</string>
     <string name="dialog_title_memctl_size">Compcache Size</string>
+    <string name="summary_memctl_swappiness">Change Swappiness Value</string>
+    <string name="dialog_title_memctl_swappiness">Swappiness</string>
 	
     <!-- Sound & display settings screen, compatibility mode check box label -->
     <string name="compatibility_mode_title">Compatibility Mode</string>
