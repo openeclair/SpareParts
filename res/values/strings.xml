@@ -59,6 +59,10 @@
     <string name="summary_on_pin_home">Home app will attempt to to stay in memory</string>
     <string name="summary_off_pin_home">Home app will not be locked in memory</string>
 
+    <string name="automatic_renice">Automatically renice phone app</string>
+    <string name="summary_on_automatic_renice">Phone app will be set at a higher priority</string>
+    <string name="summary_off_automatic_renice">Phone app will not be set at a higher priority</string>
+
     <string name="title_launcher_orientation">Launcher rotation</string>
     <string name="summary_on_launcher_orientation">Launcher will auto-orientate using accelerometer</string>
     <string name="summary_off_launcher_orientation">Launcher will not auto-orientate</string>
