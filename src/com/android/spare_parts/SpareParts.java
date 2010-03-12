@@ -59,6 +59,7 @@ public class SpareParts extends PreferenceActivity
     private static final String KEY_COMPATIBILITY_MODE = "compatibility_mode";
     private static final String PIN_HOME_PREF = "pin_home";
     private static final String LAUNCHER_ORIENTATION_PREF = "launcher_orientation";
+    private static final String AUTOMATIC_RENICE_PREF = "automatic_renice";
     private static final String MEMCTL_STATE_PREF = "memctl_state";
     private static final String MEMCTL_SIZE_PREF = "memctl_size";
     private static final String MEMCTL_SWAPPINESS_PREF = "memctl_swappiness";
@@ -73,6 +74,7 @@ public class SpareParts extends PreferenceActivity
     private CheckBoxPreference mCompatibilityMode;
     private CheckBoxPreference mPinHomePref;
     private CheckBoxPreference mLauncherOrientationPref;
+    private CheckBoxPreference mAutomaticRenicePref;
     private ListPreference mMemctlStatePref;
     private ListPreference mMemctlSizePref;
     private ListPreference mMemctlSwappinessPref;
@@ -132,6 +134,7 @@ public class SpareParts extends PreferenceActivity
         mEndButtonPref.setOnPreferenceChangeListener(this);
         mPinHomePref = (CheckBoxPreference) prefSet.findPreference(PIN_HOME_PREF);
         mLauncherOrientationPref = (CheckBoxPreference) prefSet.findPreference(LAUNCHER_ORIENTATION_PREF);
+        mAutomaticRenicePref = (CheckBoxPreference) prefSet.findPreference(AUTOMATIC_RENICE_PREF);
         
         mMemctlStatePref = (ListPreference) prefSet.findPreference(MEMCTL_STATE_PREF);
         mMemctlStatePref.setOnPreferenceChangeListener(this);
@@ -166,6 +169,9 @@ public class SpareParts extends PreferenceActivity
             mHapticFeedbackPref.setChecked(Settings.System.getInt(
                     getContentResolver(), 
                     Settings.System.HAPTIC_FEEDBACK_ENABLED, 0) != 0);
+            mAutomaticRenicePref.setChecked(Settings.System.getInt(
+                    getContentResolver(), 
+                    Settings.System.AUTOMATIC_RENICE, 0) != 0);
             mPinHomePref.setChecked(Settings.System.getInt(
                     getContentResolver(),
                     "pin_home_in_memory", 0) != 0);
@@ -338,6 +344,9 @@ public class SpareParts extends PreferenceActivity
         } else if (LAUNCHER_ORIENTATION_PREF.equals(key)) {
             Settings.System.putInt(getContentResolver(), "launcher_orientation",
                     mLauncherOrientationPref.isChecked() ? 1 : 0);
+        } else if (AUTOMATIC_RENICE_PREF.equals(key)) {
+            Settings.System.putInt(getContentResolver(), "automatic_renice",
+                    mAutomaticRenicePref.isChecked() ? 1 : 0);
         }
     }
     
