@@ -244,7 +244,7 @@ public class SpareParts extends PreferenceActivity
         try {
             int val = Integer.parseInt(objValue.toString());
             Settings.Secure.putInt(getContentResolver(), 
-                    Settings.Secure.MEMCTL_SWAPPINESS, val);
+                    Settings.Secure.MEMCTL_SWAPVAL, val);
         } catch (NumberFormatException e) {
         }
     }
@@ -317,7 +317,7 @@ public class SpareParts extends PreferenceActivity
     public void readMemctlSwappinessPreference(ListPreference pref) {
         try {
             pref.setValueIndex(Settings.Secure.getInt(getContentResolver(),
-                    Settings.Secure.MEMCTL_SWAPPINESS));
+                    Settings.Secure.MEMCTL_SWAPVAL));
         } catch (SettingNotFoundException e) {
         } 
     }
@@ -348,8 +348,8 @@ public class SpareParts extends PreferenceActivity
         readAnimationPreference(1, mTransitionAnimationsPref);
         readEndButtonPreference(mEndButtonPref);
         readMemctlStatePreference(mMemctlStatePref);
-        readMemctlSizePreference(mMemctlSizePref);
-        readMemctlSwappinessPreference(mMemctlSwappinessPref);
+        //readMemctlSizePreference(mMemctlSizePref);
+        //readMemctlSwappinessPreference(mMemctlSwappinessPref);
         updateToggles();
     }
 }
