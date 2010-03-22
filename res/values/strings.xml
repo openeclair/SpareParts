@@ -63,7 +63,7 @@
     <string name="summary_on_launcher_orientation">Launcher will auto-orientate using accelerometer</string>
     <string name="summary_off_launcher_orientation">Launcher will not auto-orientate</string>
 
-    <string name="memctl_title">Memory Settings</string>
+    <string name="memctl_title">Memory Control Settings</string>
     <string name="title_memctl_state">Compcache/Swap Settings</string>
     <string name="summary_memctl_state">Compcache / Swap Settings</string>
     <string name="dialog_title_memctl_state">Compcache/Swap</string>
