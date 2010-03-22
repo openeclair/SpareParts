@@ -85,7 +85,12 @@
             android:title="@string/title_haptic_feedback" 
             android:summaryOn="@string/summary_on_haptic_feedback"
             android:summaryOff="@string/summary_off_haptic_feedback"/>
-        
+
+        <CheckBoxPreference
+                android:key="battery_status"
+                android:title="@string/battery_status_title"
+                android:summaryOn="@string/battery_status_summary_on"
+                android:summaryOff="@string/battery_status_summary_off" />
 
         <CheckBoxPreference
                 android:key="compatibility_mode"
