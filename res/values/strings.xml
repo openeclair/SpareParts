@@ -63,10 +63,6 @@
     <string name="summary_on_launcher_orientation">Launcher will auto-orientate using accelerometer</string>
     <string name="summary_off_launcher_orientation">Launcher will not auto-orientate</string>
 
-	<string name="title_compcache_enabled">Compcache enabled</string>
-	<string name="summary_on_compcache_enabled">Compressed caching is enabled</string>
-	<string name="summary_off_compcache_enabled">Compressed caching is disabled</string>
-
     <string name="memctl_title">Memory Settings</string>
     <string name="title_memctl_state">Compcache/Swap Settings</string>
     <string name="summary_memctl_state">Compcache / Swap Settings</string>
