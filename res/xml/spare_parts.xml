@@ -114,12 +114,12 @@
             android:dialogTitle="@string/dialog_title_memctl_size" />
 
          <ListPreference
-            android:key="memctl_swappiness"
-            android:title="@string/title_memctl_swappiness"
-            android:summary="@string/summary_memctl_swappiness"
-            android:entries="@array/entries_memctl_swappiness"
-            android:entryValues="@array/entryvalues_memctl_swappiness"
-            android:dialogTitle="@string/dialog_title_memctl_swappiness" />
+            android:key="memctl_swp"
+            android:title="@string/title_memctl_swp"
+            android:summary="@string/summary_memctl_swp"
+            android:entries="@array/entries_memctl_swp"
+            android:entryValues="@array/entryvalues_memctl_swp"
+            android:dialogTitle="@string/dialog_title_memctl_swp" />
     </PreferenceCategory>
             
     <PreferenceCategory

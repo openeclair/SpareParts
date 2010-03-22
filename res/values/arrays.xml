@@ -75,7 +75,7 @@
 	<item>49152</item>
     </string-array>
 
-    <string-array name="entries_memctl_swappiness">
+    <string-array name="entries_memctl_swp">
         <item>20 (avoid swapping)</item>
         <item>40</item>
         <item>60 (default value)</item>
@@ -83,7 +83,7 @@
         <item>100 (agressively swap)</item>
     </string-array>
 
-    <string-array name="entryvalues_memctl_swappiness">
+    <string-array name="entryvalues_memctl_swp">
         <item>20</item>
         <item>40</item>
         <item>60</item>
