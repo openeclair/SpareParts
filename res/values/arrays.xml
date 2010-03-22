@@ -63,28 +63,31 @@
 
     <string-array name="entries_memctl_size">
         <item>16 MB</item>
-        <item>24 MB</item>
-        <item>32 MB</item>
+        <item>24 MB (default)</item>
+        <item>32 MB (recommended)</item>
+	<item>48 MB</item>
     </string-array>
 
     <string-array name="entryvalues_memctl_size">
         <item>16384</item>
         <item>24576</item>
         <item>32768</item>
+	<item>49152</item>
     </string-array>
 
     <string-array name="entries_memctl_swappiness">
+        <item>20 (avoid swapping)</item>
         <item>40</item>
-        <item>60</item>
+        <item>60 (default value)</item>
         <item>80</item>
-        <item>100</item>
+        <item>100 (agressively swap)</item>
     </string-array>
 
     <string-array name="entryvalues_memctl_swappiness">
+        <item>20</item>
         <item>40</item>
         <item>60</item>
         <item>80</item>
         <item>100</item>
     </string-array>
-
 </resources>
