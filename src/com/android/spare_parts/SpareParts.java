@@ -59,6 +59,7 @@ public class SpareParts extends PreferenceActivity
     private static final String KEY_COMPATIBILITY_MODE = "compatibility_mode";
     private static final String PIN_HOME_PREF = "pin_home";
     private static final String LAUNCHER_ORIENTATION_PREF = "launcher_orientation";
+    private static final String LAUNCHER_COLUMN_PREF = "launcher_columns";
     private static final String BATTERY_STATUS_PREF = "battery_status";
     private static final String MEMCTL_STATE_PREF = "memctl_state";
     private static final String MEMCTL_SIZE_PREF = "memctl_size";
@@ -74,12 +75,13 @@ public class SpareParts extends PreferenceActivity
     private CheckBoxPreference mCompatibilityMode;
     private CheckBoxPreference mPinHomePref;
     private CheckBoxPreference mLauncherOrientationPref;
+    private CheckBoxPreference mLauncherColumnPref;
+    private CheckBoxPreference mBatteryStatusPref;
     private CheckBoxPreference mBatteryStatusPref;    
     private ListPreference mMemctlStatePref;
     private ListPreference mMemctlSizePref;
     private ListPreference mMemctlSwpPref;
-    
-    
+
     private IWindowManager mWindowManager;
 
     public static boolean updatePreferenceToSpecificActivityOrRemove(Context context,
@@ -134,6 +136,7 @@ public class SpareParts extends PreferenceActivity
         mEndButtonPref.setOnPreferenceChangeListener(this);
         mPinHomePref = (CheckBoxPreference) prefSet.findPreference(PIN_HOME_PREF);
         mLauncherOrientationPref = (CheckBoxPreference) prefSet.findPreference(LAUNCHER_ORIENTATION_PREF);
+        mLauncherColumnPref = (CheckBoxPreference) prefSet.findPreference(LAUNCHER_COLUMN_PREF);
         mBatteryStatusPref = (CheckBoxPreference) prefSet.findPreference(BATTERY_STATUS_PREF);
 
         mMemctlStatePref = (ListPreference) prefSet.findPreference(MEMCTL_STATE_PREF);
@@ -175,6 +178,9 @@ public class SpareParts extends PreferenceActivity
             mLauncherOrientationPref.setChecked(Settings.System.getInt(
                     getContentResolver(),
                     "launcher_orientation", 0) != 0);
+            mLauncherColumnPref.setChecked(Settings.System.getInt(
+                    getContentResolver(),
+                    Settings.System.LAUNCHER_COLUMN_NUMBER, 1) != 0);
             mBatteryStatusPref.setChecked(Settings.System.getInt(
                     getContentResolver(),
                     Settings.System.BATTERY_PERCENTAGE_STATUS_ICON, 1) != 0);
@@ -344,6 +350,10 @@ public class SpareParts extends PreferenceActivity
         } else if (LAUNCHER_ORIENTATION_PREF.equals(key)) {
             Settings.System.putInt(getContentResolver(), "launcher_orientation",
                     mLauncherOrientationPref.isChecked() ? 1 : 0);
+        } else if (LAUNCHER_COLUMN_PREF.equals(key)) {
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.LAUNCHER_COLUMN_NUMBER,
+                    mLauncherColumnPref.isChecked() ? 1 : 0);
         } else if (BATTERY_STATUS_PREF.equals(key)) {
             Settings.System.putInt(getContentResolver(),
                     Settings.System.BATTERY_PERCENTAGE_STATUS_ICON,
