@@ -88,4 +88,8 @@
     <string name="compatibility_mode_summary_on">Run older apps in Compatibility mode. This require rebooting. </string>
     <!-- Sound & display settings screen, compatibility mode option summary text when check box is clear -->
     <string name="compatibility_mode_summary_off">Run older apps in Compatibility mode. This require rebooting. </string>
+
+    <string name="title_kernel_switch">Switch Kernels</string>
+    <string name="summary_kernel_switch">Switches between regular and 3D kernel</string>
+    <string name="dialog_title_kernel_switch">Select Kernel</string>
 </resources>

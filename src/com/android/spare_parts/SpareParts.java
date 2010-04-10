@@ -64,6 +64,7 @@ public class SpareParts extends PreferenceActivity
     private static final String MEMCTL_STATE_PREF = "memctl_state";
     private static final String MEMCTL_SIZE_PREF = "memctl_size";
     private static final String MEMCTL_SWP_PREF = "memctl_swp";
+    private static final String KERNEL_SWITCH_PREF = "kernel_switch";
     
     private final Configuration mCurConfig = new Configuration();
     
@@ -81,6 +82,7 @@ public class SpareParts extends PreferenceActivity
     private ListPreference mMemctlStatePref;
     private ListPreference mMemctlSizePref;
     private ListPreference mMemctlSwpPref;
+    private ListPreference mKernelSwitchPref;
 
     private IWindowManager mWindowManager;
 
@@ -145,6 +147,9 @@ public class SpareParts extends PreferenceActivity
         mMemctlSizePref.setOnPreferenceChangeListener(this);
         mMemctlSwpPref = (ListPreference) prefSet.findPreference(MEMCTL_SWP_PREF);
         mMemctlSwpPref.setOnPreferenceChangeListener(this);
+
+        mKernelSwitchPref = (ListPreference) prefSet.findPreference(MEMCTL_SWP_PREF);
+        mKernelSwitchPref.setOnPreferenceChangeListener(this);
 
         
         mCompatibilityMode = (CheckBoxPreference) findPreference(KEY_COMPATIBILITY_MODE);
@@ -261,6 +266,15 @@ public class SpareParts extends PreferenceActivity
         }
     }
 
+    public void writeKernelSwitchPreference(Object objValue) {
+        try {
+            int val = Integer.parseInt(objValue.toString());
+            Settings.Secure.putInt(getContentResolver(), 
+                    Settings.Secure.KERNEL_SWITCH, val);
+        } catch (NumberFormatException e) {
+        }
+    }
+
     public void writeEndButtonPreference(Object objValue) {
         try {
             int val = Integer.parseInt(objValue.toString());
@@ -302,7 +316,7 @@ public class SpareParts extends PreferenceActivity
 
     public void readMemctlStatePreference(ListPreference pref) {
         try {
-        	int val = Settings.Secure.getInt(getContentResolver(), Settings.Secure.MEMCTL_STATE);
+            int val = Settings.Secure.getInt(getContentResolver(), Settings.Secure.MEMCTL_STATE);
             pref.setValueIndex(val);
             
         	// Disable MemCtl Swappiness Preference if State is disabled
@@ -330,6 +344,14 @@ public class SpareParts extends PreferenceActivity
         try {
             pref.setValueIndex(Settings.Secure.getInt(getContentResolver(),
                     Settings.Secure.MEMCTL_SWP));
+        } catch (SettingNotFoundException e) {
+        } 
+    }
+
+    public void readKernelSwitchPreference(ListPreference pref) {
+        try {
+            pref.setValueIndex(Settings.Secure.getInt(getContentResolver(),
+                    Settings.Secure.KERNEL_SWITCH));
         } catch (SettingNotFoundException e) {
         } 
     }

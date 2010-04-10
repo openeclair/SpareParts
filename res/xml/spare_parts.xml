@@ -97,6 +97,14 @@
                 android:title="@string/compatibility_mode_title"
                 android:summaryOn="@string/compatibility_mode_summary_on"
                 android:summaryOff="@string/compatibility_mode_summary_off" />
+
+        <ListPreference
+            android:key="kernel_switch"
+            android:title="@string/title_kernel_switch"
+            android:summary="@string/summary_kernel_switch"
+            android:entries="@array/entries_kernel_switch"
+            android:entryValues="@array/entryvalues_kernel_switch"
+            android:dialogTitle="@string/dialog_title_kernel_switch" />
                 
     </PreferenceCategory>
 
