@@ -91,12 +91,12 @@
         <item>100</item>
     </string-array>
 
-    <string-array name="entries_switch_kernel">
+    <string-array name="entries_kernel_switch">
         <item>Regular Kernel</item>
         <item>3D Kernel</item>
     </string-array>
 
-    <string-array name="entryvalues_switch_kernel">
+    <string-array name="entryvalues_kernel_switch">
         <item>0</item>
         <item>1</item>
     </string-array>
