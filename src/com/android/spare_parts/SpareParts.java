@@ -78,7 +78,6 @@ public class SpareParts extends PreferenceActivity
     private CheckBoxPreference mLauncherOrientationPref;
     private CheckBoxPreference mLauncherColumnPref;
     private CheckBoxPreference mBatteryStatusPref;
-    private CheckBoxPreference mBatteryStatusPref;    
     private ListPreference mMemctlStatePref;
     private ListPreference mMemctlSizePref;
     private ListPreference mMemctlSwpPref;
