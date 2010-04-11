@@ -18,7 +18,6 @@
 package com.android.spare_parts;
 
 import android.app.ActivityManagerNative;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -236,7 +235,7 @@ public class SpareParts extends PreferenceActivity
             Settings.Secure.putInt(getContentResolver(),
                     Settings.Secure.MEMCTL_STATE, val);
             
-            // Disable MemCtl Swappiness Preference if State is disabled
+        	// Disable MemCtl Swappiness Preference if State is disabled
             if (val ==0)
             	mMemctlSwpPref.setEnabled(false);
             else
@@ -270,28 +269,8 @@ public class SpareParts extends PreferenceActivity
     public void writeKernelSwitchPreference(Object objValue) {
         try {
             int val = Integer.parseInt(objValue.toString());
-
-	    final AlertDialog dialog = new AlertDialog.Builder(context)
-                    .setIcon(android.R.drawable.ic_dialog_alert)
-                    .setTitle(com.android.internal.R.string.reboot_system)
-                    .setMessage(com.android.internal.R.string.reboot_confirm)
-                    .setPositiveButton(com.android.internal.R.string.yes, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            Settings.Secure.putInt(getContentResolver(), Settings.Secure.KERNEL_SWITCH, val);
-                        }
-                    })
-                    .setNegativeButton(com.android.internal.R.string.no, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            readKernelSwitchPreference(mKernelSwitchPref);
-                        }
-                    })
-                    .create();
-            dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
-            if (!context.getResources().getBoolean(
-                    com.android.internal.R.bool.config_sf_slowBlur)) {
-                dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
-            }
-            dialog.show();
+            Settings.Secure.putInt(getContentResolver(), 
+                    Settings.Secure.KERNEL_SWITCH, val);
         } catch (NumberFormatException e) {
         }
     }
